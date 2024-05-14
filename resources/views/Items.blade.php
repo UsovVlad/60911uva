@@ -27,5 +27,8 @@
         </tr>
     @endforeach
     </table>
+    <div>
+        {{ $items->links() }}
+    </div>
 </body>
 </html>
