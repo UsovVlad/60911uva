@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Category;
+use Illuminate\Support\Facades\Gate;
 
 class ItemController extends Controller
 {
@@ -87,6 +88,9 @@ class ItemController extends Controller
      */
     public function destroy(string $id)
     {
+    if (! Gate::allows('destroy-item', Item::all()->where('id', $id)->first())){
+        return redirect('/error')->with('message', 'У вас нет разрешения на удаление товара номер ' . $id);
+    }
     // Удаляем все зависимости в таблице item_order
     \DB::table('item_order')->where('item_id', $id)->delete();
     Item::destroy($id);
