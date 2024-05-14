@@ -27,3 +27,8 @@ Route::get('/category', [CategoryController::class, 'index']);
 Route::get('/category/{id}', [CategoryController::class, 'show']);
 Route::get('/item', [ItemController::class, 'index']);
 Route::get('/order/{id}', [OrderController::class, 'show']);
+Route::get('/item/create', [ItemController::class, 'create']);
+Route::post('/item', [ItemController::class, 'store']);
+Route::get('/item/edit/{id}', [ItemController::class, 'edit']);
+Route::post('/item/update/{id}', [ItemController::class, 'update']);
+Route::get('/item/destroy/{id}', [ItemController::class, 'destroy']);
