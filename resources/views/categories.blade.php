@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout')
+@section('content')
 <head>
     <meta charset="UTF-8">
     <title>609-11</title>
@@ -19,4 +19,4 @@
     @endforeach
     </table>
 </body>
-</html>
+@endsection

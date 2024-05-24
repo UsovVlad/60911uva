@@ -88,8 +88,8 @@ class ItemController extends Controller
      */
     public function destroy(string $id)
     {
-    if (! Gate::allows('destroy-item', Item::all()->where('id', $id)->first())){
-        return redirect('/error')->with('message', 'У вас нет разрешения на удаление товара номер ' . $id);
+        if (! Gate::allows('destroy-item', Item::all()->where('id', $id)->first())){
+            return redirect('login')->withErrors(['success' => 'У вас нет разрешения на удаление товара']);
     }
     // Удаляем все зависимости в таблице item_order
     \DB::table('item_order')->where('item_id', $id)->delete();
