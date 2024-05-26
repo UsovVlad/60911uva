@@ -4,6 +4,8 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\CartController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,4 +28,9 @@ Route::get('/logout', [LoginController::class, 'logout']);
 Route::post('/auth', [LoginController::class, 'authenticate']);
 Route::get('/error', function () {
     return view('error', ['message' => session('message')]);
+});
+Route::middleware('auth')->group(function () {
+    Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
+    Route::post('/cart/{itemId}', [CartController::class, 'addItem'])->name('cart.add');
+    Route::delete('/cart/{itemId}', [CartController::class, 'removeItem'])->name('cart.remove');
 });

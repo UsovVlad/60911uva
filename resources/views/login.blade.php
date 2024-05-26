@@ -1,26 +1,36 @@
+<style>
+    .navbar-nav{
+        background-color: #343a40;
+    }
+    .navbar-brand{
+        color: black !important;
+    }
+    .nav-link, .dropdown-item {
+        color: white !important;
+    }
+    .dropdown-menu {
+        background-color: #343a40;
+    }
+    .dropdown-item:hover {
+        background-color: #495057;
+    }
+</style>
 <header>
-    <nav class = "navbar navbar-expand-md navbar-dark fixed-top"></nav>
-        <div class = "container-fluid">
-            <a class = "navbar-brand" href="#">Laravel Project</a>
-            <button class = "navbar-toggler" type = "button" data-bs-toggle = "collapse" data-bs-target = "#navbarCollapse"
-                aria-controls = "navbarCollapse" aria-expanded = "false" aria-label = "Toggle navigation" style="background-color: gray;">
-                <span class = "navbar-toggler-icon"></span>
-            </button>
-            <div class = "collapse navbar-collapse" id = "navbarCollapse">
-                <ul class = "navbar-nav me-auto mb-2 mb-mb-0">
-                    <li class = "nav-item dropdown">
-                        <a class = "nav-link dropdown-toggle active" aria-current = "page" data-bs-toggle = "dropdown" href = {{ url('item') }}>Товары</a>
-                        <ul class = "dropdown-menu">
-                            <li><a class = "dropdown-item" href = {{ url('item') }}>Все товары</a></li>
-                            <li><a class = "dropdown-item" href = {{ url('item/create') }}>Добавить товар</a></li>
-                            <li><a class = "dropdown-item" href = {{ url('category') }}>Категории</a></li>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+        <div class="container-fluid">
+            <div>
+            <a class="navbar-brand" href="#">Market</a>
+            </div>
+            <div class="navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" aria-current="page" data-bs-toggle="dropdown" href="{{ url('item') }}">Товары</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{ url('category') }}">Категории</a></li>
+                            <li><a class="dropdown-item" href="{{ url('item') }}">Все товары</a></li>
+                            <li><a class="dropdown-item" href="{{ url('item/create') }}">Добавить товар</a></li>
+                            <li><a class="dropdown-item" href="{{ url('cart') }}">Корзина</a></li>
                         </ul>
-                    </li>
-                    <li class = "nav-item">
-                        <a class = "nav-link" href = "#">Заказы</a>
-                    </li>
-                    <li class = "nav-item">
-                        <a class = "nav-link disabled" aria-disabled = "true">Покупатели</a>
                     </li>
                 </ul>
                 @if (!Auth::user())
@@ -31,12 +41,12 @@
                     <button class="btn btn-outline-success" type="submit">Войти</button>
                 </form>
                 @else
-                    <ul class = "navbar-nav">
-                        <a class = "nav-link active" href = "#">
-                            <i class = "fa fa-user" style = "font-size:20px; color:white; background: green;"></i>
-                            <span>  </span> {{Auth::user()->name}}
+                    <ul class="navbar-nav">
+                        <a class="nav-link active" href="{{ url('cart') }}">
+                            <i class="fa fa-user" style="font-size:20px; color:white; background: green;"></i>
+                            <span>  </span> {{ Auth::user()->name }}
                         </a>
-                        <a class = "btn btn-outline-success my-2 my-sm-0" href = "{{ url('logout') }}">Выйти</a>
+                        <a class="btn btn-outline-success my-2 my-sm-0" href="{{ url('logout') }}">Выйти</a>
                     </ul>
                 @endif
             </div>
