@@ -14,8 +14,8 @@ Route::get('/hello', function() {
     return view ('hello', ['title' => 'Hello world!']);
     //return view('welcome');
 });
-Route::get('/category', [CategoryController::class, 'index']);
-Route::get('/category/{id}', [CategoryController::class, 'show']);
+//Route::get('/category', [CategoryController::class, 'index']);
+//Route::get('/category/{id}', [CategoryController::class, 'show']);
 Route::get('/item', [ItemController::class, 'index']);
 Route::get('/order/{id}', [OrderController::class, 'show']);
 Route::get('/item/create', [ItemController::class, 'create'])->middleware('auth');

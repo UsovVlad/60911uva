@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Item;
+use App\Models\Cart;
 use Illuminate\Http\Request;
-
-class ItemControllerApi extends Controller
+class CartControllerApi extends Controller
 {
     public function index()
     {
-        return response(Item::all());
+        return response(Cart::all());
     }
     public function store(Request $request)
     {
@@ -17,7 +16,7 @@ class ItemControllerApi extends Controller
     }
     public function show(string $id)
     {
-        return response(Item::find($id));
+        return response(Cart::find($id));
     }
     public function update(Request $request, string $id)
     {
