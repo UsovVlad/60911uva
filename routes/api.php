@@ -2,6 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryControllerApi;
+use App\Http\Controllers\ProductControllerApi;
+use App\Http\Controllers\OrderControllerApi;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +23,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::get('/category', [CategoryControllerApi::class, 'index']);
 Route::get('/category/{id}', [CategoryControllerApi::class, 'show']);
+
+Route::get('/items', [ItemControllerApi::class, 'index']);
+Route::get('/items/{id}', [ItemControllerApi::class, 'show']);
+
+Route::get('/orders', [OrderControllerApi::class, 'index']);
+Route::get('/orders/{id}', [OrderControllerApi::class, 'show']);
