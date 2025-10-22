@@ -4,27 +4,34 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ItemControllerApi extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return response(Item::all());
+        $perPage = $request->input('perpage', 5);
+        $page = $request->input('page', 0);
+
+        $items = Item::with('category')
+            ->skip($page * $perPage)
+            ->take($perPage)
+            ->get();
+
+        return response()->json($items);
     }
-    public function store(Request $request)
+
+    public function total()
     {
-        //
+        $count = Item::count();
+        return response()->json($count, Response::HTTP_OK);
     }
-    public function show(string $id)
+
+    public function show($id)
     {
-        return response(Item::find($id));
-    }
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-    public function destroy(string $id)
-    {
-        //
+        $item = Item::find($id);
+        return $item ? response()
+            ->json($item) : response()
+            ->json(['message' => 'Not found'], Response::HTTP_NOT_FOUND);
     }
 }

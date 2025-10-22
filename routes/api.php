@@ -25,9 +25,17 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::get('/category', [CategoryControllerApi::class, 'index']);
 Route::get('/category/{id}', [CategoryControllerApi::class, 'show']);
+Route::get('/categories_total', [CategoryControllerApi::class, 'total']);
 
 Route::get('/item', [ItemControllerApi::class, 'index']);
+Route::get('/items_total', [ItemControllerApi::class, 'total']);
 Route::get('/item/{id}', [ItemControllerApi::class, 'show']);
+Route::post('/item', [ItemControllerApi::class, 'store']);
+Route::put('/item/{id}', [ItemControllerApi::class, 'update']);
+Route::delete('/item/{id}', [ItemControllerApi::class, 'destroy']);
 
-//Route::get('/cart', [CartControllerApi::class, 'index']);
-//Route::get('/cart/{id}', [CartControllerApi::class, 'show']);
+Route::get('/cart', [CartControllerApi::class, 'index']);
+Route::get('/cart/{id}', [CartControllerApi::class, 'show']);
+Route::get('/cart/user/{userId}', [CartControllerApi::class, 'getCartByUserId']);
+Route::get('/cart/{cartId}/items', [CartControllerApi::class, 'getItems']);
+Route::get('/cart/{cartId}/items_total', [CartControllerApi::class, 'getItemsTotal']);
